@@ -1,0 +1,67 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile data including roles and access levels.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "client"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "role"]
+    },
+    "Business": {
+      "title": "Business Entity",
+      "description": "Business managed for HACCP and safety.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "address": { "type": "string" },
+        "taxId": { "type": "string" }
+      },
+      "required": ["name", "ownerId"]
+    },
+    "SensorData": {
+      "title": "Sensor Reading",
+      "description": "Temperature and humidity logs.",
+      "type": "object",
+      "properties": {
+        "businessId": { "type": "string" },
+        "sensorId": { "type": "string" },
+        "type": { "type": "string", "enum": ["temperature", "humidity"] },
+        "value": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["businessId", "type", "value", "timestamp"]
+    },
+    "PsychTest": {
+      "title": "Psychological Test",
+      "description": "Results of psychotechnical and cognitive evaluations.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "testType": { "type": "string" },
+        "score": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" },
+        "profileComparison": { "type": "object" }
+      }
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Public and private user profiles."
+    },
+    "businesses/{businessId}": {
+      "schema": "Business",
+      "description": "Business entities."
+    },
+    "sensors_logs/{logId}": {
+      "schema": "SensorData",
+      "description": "Historical sensor data."
+    }
+  }
+}

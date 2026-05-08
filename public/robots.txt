@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /login
+Disallow: /register
+Disallow: /settings
+Disallow: /haccp-dashboard
+Disallow: /psych-dashboard
+
+Sitemap: https://theoneorder.pt/sitemap.xml
